@@ -59,4 +59,66 @@ function checkout() {
 </script>
 
 </body>
-</html>
+</html>body {
+margin: 0;
+font-family: Arial;
+background: #f5f5f5;
+}
+
+header {
+background: black;
+color: white;
+padding: 15px;
+text-align: center;
+font-size: 22px;
+font-weight: bold;
+}
+
+.container {
+padding: 20px;
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 20px;
+}
+
+.product, .cart {
+background: white;
+padding: 20px;
+border-radius: 12px;
+width: 320px;
+text-align: center;
+box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+img {
+width: 100%;
+border-radius: 10px;
+}
+
+.price {
+font-size: 20px;
+font-weight: bold;
+}
+
+button {
+background: black;
+color: white;
+border: none;
+padding: 12px;
+width: 100%;
+border-radius: 10px;
+cursor: pointer;
+margin-top: 10px;
+}
+
+button:hover {
+background: #333;
+}
+
+footer {
+text-align: center;
+padding: 15px;
+font-size: 12px;
+color: grey;
+}
