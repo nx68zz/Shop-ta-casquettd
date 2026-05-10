@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SHOP TA CASQUETTE</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --black: #0a0a0a;
+      --white: #f5f0e8;
+      --cream: #e8e0d0;
+      --accent: #e63312;
+      --gold: #c9a84c;
+      --gray: #2a2a2a;
+    }
+
+```
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--black);
+  color: var(--white);
+  font-family: 'Barlow', sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ── HEADER ── */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--black);
+  border-bottom: 1px solid #222;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  height: 64px;
+}
+
+.logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.8rem;
+  letter-spacing: 3px;
+  color: var(--white);
+}
+.logo span { color: var(--accent); }
+
+nav { display: flex; gap: 2rem; }
+nav a {
+  color: var(--white);
+  text-decoration: none;
+  font-size: .85rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  opacity: .7;
+  transition: opacity .2s;
+  cursor: pointer;
+}
+nav a:hover, nav a.active { opacity: 1; }
+
+.cart-btn {
+  position: relative;
+  background: none;
+  border: 1.5px solid var(--white);
+  color: var(--white);
+  padding: .45rem 1.2rem;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1rem;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: background .2s, color .2s;
+  display: flex; align-items: center; gap: .5rem;
+}
+.cart-btn:hover { background: var(--white); color: var(--black); }
+.cart-count {
+  background: var(--accent);
+  color: #fff;
+  font-family: 'Barlow', sans-serif;
+  font-size: .7rem;
+  font-weight: 700;
+  border-radius: 50%;
+  width: 20px; height: 20px;
+  display: flex; align-items: center; justify-content: center;
+  position: absolute;
+  top: -8px; right: -8px;
+}
+
+/* ── HERO ── */
+.hero {
+  min-height: 72vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 4rem 6vw;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: 'CASQUETTE';
+  position: absolute;
+  right: -2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(8rem, 22vw, 22rem);
+  color: transparent;
+  -webkit-text-stroke: 1px #1e1e1e;
+  pointer-events: none;
+  white-space: nowrap;
+  line-height: 1;
+}
+
+.hero-tag {
+  font-size: .75rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 600;
+  margin-bottom: 1.2rem;
+}
+.hero h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(3.5rem, 10vw, 9rem);
+  line-height: .92;
+  letter-spacing: 2px;
+  margin-bottom: 1.5rem;
+}
+.hero h1 em {
+  font-style: normal;
+  color: var(--accent);
+}
+.hero p {
+  max-width: 440px;
+  font-size: 1rem;
+  line-height: 1.7;
+  opacity: .6;
+  margin-bottom: 2.5rem;
+}
+.hero-cta {
+  display: flex; gap: 1rem; flex-wrap: wrap;
+}
+.btn-primary {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  padding: .9rem 2.4rem;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.1rem;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: transform .15s, opacity .15s;
+}
+.btn-primary:hover { transform: translateY(-2px); opacity: .9; }
+.btn-ghost {
+  background: transparent;
+  color: var(--white);
+  border: 1.5px solid #444;
+  padding: .9rem 2.4rem;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.1rem;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: border-color .2s;
+}
+.btn-ghost:hover { border-color: var(--white); }
+
+/* ── MARQUEE ── */
+.marquee-strip {
+  background: var(--accent);
+  overflow: hidden;
+  white-space: nowrap;
+  padding: .5rem 0;
+}
+.marquee-inner {
+  display: inline-block;
+  animation: marquee 18s linear infinite;
+}
+.marquee-inner span {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.15rem;
+  letter-spacing: 6px;
+  padding: 0 2rem;
+  color: #fff;
+}
+@keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+/* ── PRODUCTS ── */
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 4rem 6vw 2rem;
+}
+.section-header h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  letter-spacing: 2px;
+}
+.filter-tabs { display: flex; gap: .5rem; }
+.filter-tab {
+  background: none;
+  border: 1px solid #333;
+  color: var(--white);
+  padding: .4rem 1.1rem;
+  font-size: .75rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all .2s;
+  font-family: 'Barlow', sans-serif;
+  font-weight: 600;
+}
+.filter-tab:hover, .filter-tab.active { background: var(--white); color: var(--black); border-color: var(--white); }
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1px;
+  background: #111;
+  padding: 0 6vw 4rem;
+}
+
+.product-card {
+  background: var(--black);
+  cursor: pointer;
+  transition: background .2s;
+  overflow: hidden;
+  position: relative;
+}
+.product-card:hover { background: #0f0f0f; }
+
+.product-img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 6rem;
+  background: linear-gradient(135deg, #141414 0%, #1a1a1a 100%);
+  position: relative;
+  overflow: hidden;
+  transition: transform .4s ease;
+}
+.product-card:hover .product-img { transform: scale(1.04); }
+
+.badge {
+  position: absolute;
+  top: 1rem; left: 1rem;
+  font-size: .65rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: .25rem .7rem;
+}
+.badge-new { background: var(--gold); color: var(--black); }
+.badge-hot { background: var(--accent); color: #fff; }
+.badge-sold { background: #555; color: #fff; }
+
+.product-info { padding: 1.2rem 1.2rem 1.5rem; }
+.product-cat {
+  font-size: .65rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 600;
+  margin-bottom: .4rem;
+}
+.product-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.4rem;
+  letter-spacing: 1px;
+  margin-bottom: .3rem;
+}
+.product-desc {
+  font-size: .8rem;
+  opacity: .45;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+}
+.product-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.product-price {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.6rem;
+  letter-spacing: 1px;
+}
+.product-price .old {
+  font-size: 1rem;
+  opacity: .4;
+  text-decoration: line-through;
+  margin-left: .4rem;
+}
+.add-btn {
+  background: var(--white);
+  color: var(--black);
+  border: none;
+  width: 38px; height: 38px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background .15s, transform .15s;
+  flex-shrink: 0;
+}
+.add-btn:hover { background: var(--accent); color: #fff; transform: scale(1.08); }
+.add-btn:disabled { background: #333; cursor: not-allowed; transform: none; }
+
+/* ── CART DRAWER ── */
+.overlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,.7);
+  z-index: 200;
+  opacity: 0; pointer-events: none;
+  transition: opacity .3s;
+}
+.overlay.open { opacity: 1; pointer-events: all; }
+
+.cart-drawer {
+  position: fixed;
+  top: 0; right: 0;
+  width: min(420px, 100vw);
+  height: 100%;
+  background: #0f0f0f;
+  border-left: 1px solid #1e1e1e;
+  z-index: 300;
+  transform: translateX(100%);
+  transition: transform .35s cubic-bezier(.4,0,.2,1);
+  display: flex;
+  flex-direction: column;
+}
+.cart-drawer.open { transform: translateX(0); }
+
+.drawer-header {
+  padding: 1.5rem 1.8rem;
+  border-bottom: 1px solid #1e1e1e;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.drawer-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.8rem;
+  letter-spacing: 2px;
+}
+.close-btn {
+  background: none; border: none;
+  color: var(--white);
+  font-size: 1.4rem;
+  cursor: pointer; opacity: .5;
+  transition: opacity .2s;
+}
+.close-btn:hover { opacity: 1; }
+
+.cart-items { flex: 1; overflow-y: auto; padding: 1rem 1.8rem; }
+.cart-empty {
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  height: 100%;
+  opacity: .3;
+}
+.cart-empty span { font-size: 3.5rem; margin-bottom: .8rem; }
+.cart-empty p { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; letter-spacing: 2px; }
+
+.cart-item {
+  display: flex; gap: 1rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid #1a1a1a;
+  animation: slideIn .25s ease;
+}
+@keyframes slideIn { from { opacity:0; transform:translateX(10px); } to { opacity:1; transform:translateX(0); } }
+
+.cart-item-img {
+  width: 68px; height: 68px;
+  background: #1a1a1a;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 2rem;
+  flex-shrink: 0;
+}
+.cart-item-info { flex: 1; }
+.cart-item-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.1rem; letter-spacing: 1px;
+  margin-bottom: .2rem;
+}
+.cart-item-price { font-size: .85rem; color: var(--gold); font-weight: 600; }
+
+.qty-controls {
+  display: flex; align-items: center; gap: .6rem; margin-top: .5rem;
+}
+.qty-btn {
+  background: #222; border: none;
+  color: var(--white);
+  width: 26px; height: 26px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; font-size: .9rem;
+  transition: background .15s;
+}
+.qty-btn:hover { background: #444; }
+.qty-num { font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem; min-width: 18px; text-align: center; }
+
+.remove-btn {
+  background: none; border: none;
+  color: #555; font-size: .8rem;
+  cursor: pointer; align-self: flex-start;
+  transition: color .15s;
+  margin-top: .2rem;
+}
+.remove-btn:hover { color: var(--accent); }
+
+.cart-footer {
+  padding: 1.5rem 1.8rem;
+  border-top: 1px solid #1e1e1e;
+}
+.cart-subtotal {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: .5rem;
+}
+.cart-subtotal span { opacity: .5; font-size: .85rem; letter-spacing: 1px; text-transform: uppercase; }
+.cart-subtotal strong {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.8rem;
+  letter-spacing: 1px;
+}
+.cart-subtotal small { font-size: .75rem; opacity: .4; }
+.checkout-btn {
+  width: 100%;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  padding: 1.1rem;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.3rem;
+  letter-spacing: 3px;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: opacity .2s, transform .15s;
+}
+.checkout-btn:hover { opacity: .9; transform: translateY(-1px); }
+.checkout-btn:disabled { opacity: .3; cursor: not-allowed; transform: none; }
+
+/* ── FOOTER ── */
+footer {
+  border-top: 1px solid #1a1a1a;
+  padding: 3rem 6vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.footer-logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.5rem;
+  letter-spacing: 3px;
+  opacity: .5;
+}
+.footer-logo span { color: var(--accent); opacity: 1; }
+footer p { font-size: .75rem; opacity: .3; letter-spacing: 1px; }
+
+/* ── TOAST ── */
+.toast {
+  position: fixed;
+  bottom: 2rem; left: 50%;
+  transform: translateX(-50%) translateY(80px);
+  background: var(--white);
+  color: var(--black);
+  padding: .7rem 1.8rem;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1rem;
+  letter-spacing: 2px;
+  z-index: 999;
+  transition: transform .3s cubic-bezier(.4,0,.2,1);
+  pointer-events: none;
+}
+.toast.show { transform: translateX(-50%) translateY(0); }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #333; border-radius: 2px; }
+
+@media (max-width: 640px) {
+  nav { display: none; }
+  .section-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+  footer { flex-direction: column; text-align: center; }
+}
+```
+
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+
+<header>
+  <div class="logo">SHOP<span>TA</span>CASQUETTE</div>
+  <nav>
+    <a class="active">Boutique</a>
+    <a>Nouveautés</a>
+    <a>Promos</a>
+    <a>Contact</a>
+  </nav>
+  <button class="cart-btn" onclick="openCart()">
+    🧢 PANIER
+    <span class="cart-count" id="cartCount">0</span>
+  </button>
+</header>
+
+<!-- HERO -->
+
+<section class="hero">
+  <p class="hero-tag">✦ Collection Printemps 2026</p>
+  <h1>TROUVE<br>TA<br><em>CAPPE.</em></h1>
+  <p>Des casquettes premium pour chaque style — streetwear, vintage, sport. Livraison rapide, qualité garantie.</p>
+  <div class="hero-cta">
+    <button class="btn-primary" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">SHOPPER MAINTENANT</button>
+    <button class="btn-ghost">VOIR LES NOUVEAUTÉS</button>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+
+<div class="marquee-strip">
+  <div class="marquee-inner">
+    <span>LIVRAISON GRATUITE DÈS 60€</span><span>•</span>
+    <span>NOUVEAUTÉS CHAQUE SEMAINE</span><span>•</span>
+    <span>RETOURS GRATUITS 30 JOURS</span><span>•</span>
+    <span>PAIEMENT 3X SANS FRAIS</span><span>•</span>
+    <span>LIVRAISON GRATUITE DÈS 60€</span><span>•</span>
+    <span>NOUVEAUTÉS CHAQUE SEMAINE</span><span>•</span>
+    <span>RETOURS GRATUITS 30 JOURS</span><span>•</span>
+    <span>PAIEMENT 3X SANS FRAIS</span><span>•</span>
+  </div>
+</div>
+
+<!-- PRODUCTS -->
+
+<div class="section-header">
+  <h2 id="products">NOTRE COLLECTION</h2>
+  <div class="filter-tabs">
+    <button class="filter-tab active" onclick="filterProducts('all', this)">TOUT</button>
+    <button class="filter-tab" onclick="filterProducts('snapback', this)">SNAPBACK</button>
+    <button class="filter-tab" onclick="filterProducts('fitted', this)">FITTED</button>
+    <button class="filter-tab" onclick="filterProducts('trucker', this)">TRUCKER</button>
+  </div>
+</div>
+
+<div class="products-grid" id="productsGrid"></div>
+
+<!-- CART DRAWER -->
+
+<div class="overlay" id="overlay" onclick="closeCart()"></div>
+<div class="cart-drawer" id="cartDrawer">
+  <div class="drawer-header">
+    <span class="drawer-title">TON PANIER</span>
+    <button class="close-btn" onclick="closeCart()">✕</button>
+  </div>
+  <div class="cart-items" id="cartItems">
+    <div class="cart-empty">
+      <span>🧢</span>
+      <p>Panier vide</p>
+    </div>
+  </div>
+  <div class="cart-footer">
+    <div class="cart-subtotal">
+      <span>Sous-total</span>
+      <strong id="cartTotal">0,00 €</strong>
+    </div>
+    <small style="opacity:.35;font-size:.75rem;">Livraison calculée à la commande</small>
+    <button class="checkout-btn" id="checkoutBtn" disabled onclick="checkout()">COMMANDER →</button>
+  </div>
+</div>
+
+<!-- TOAST -->
+
+<div class="toast" id="toast"></div>
+
+<!-- FOOTER -->
+
+<footer>
+  <div class="footer-logo">SHOP<span>TA</span>CASQUETTE</div>
+  <p>© 2026 ShopTaCasquette — Tous droits réservés</p>
+  <p style="opacity:.2">Fait avec 🧢 en France</p>
+</footer>
+
+<script>
+  const PRODUCTS = [
+    { id:1, name:'OG Snapback', cat:'snapback', emoji:'🧢', price:34.90, badge:'hot', desc:'Coton premium, ajusteur métal, visière plate.' },
+    { id:2, name:'Vintage Wash', cat:'fitted', emoji:'🎩', price:42.00, old:55.00, badge:'new', desc:'Effet délavé authentique, broderie 3D.' },
+    { id:3, name:'Mesh Trucker', cat:'trucker', emoji:'👒', price:29.90, badge:null, desc:'Dos filet respirant, parfait pour l'été.' },
+    { id:4, name:'Black Label', cat:'snapback', emoji:'⬛', price:39.90, badge:'hot', desc:'All-black, logo ton sur ton, visière courbe.' },
+    { id:5, name:'Camo Army', cat:'trucker', emoji:'🪖', price:32.00, badge:null, desc:'Motif camouflage, ajusteur clip.' },
+    { id:6, name:'Retro Script', cat:'fitted', emoji:'🏆', price:47.50, old:60.00, badge:'new', desc:'Script brodé vintage, laine & polyester.' },
+    { id:7, name:'Dad Cap Lin', cat:'fitted', emoji:'🌿', price:36.00, badge:null, desc:'Lin naturel, boucle dorée, silhouette décontractée.' },
+    { id:8, name:'Neon Edge', cat:'snapback', emoji:'⚡', price:38.00, badge:'hot', desc:'Bord néon fluo, logo réfléchissant nuit.' },
+    { id:9, name:'Corduroy Co.', cat:'fitted', emoji:'🟫', price:44.00, badge:'new', desc:'Velours côtelé chocolat, broderie crème.' },
+    { id:10, name:'Sport Pro', cat:'trucker', emoji:'🏃', price:27.90, badge:null, desc:'Technologie DryFit, légère et robuste.' },
+    { id:11, name:'Floral Bloom', cat:'snapback', emoji:'🌸', price:35.50, badge:'new', desc:'Patch floral brodé, coloris pastels.' },
+    { id:12, name:'Classic 5-Panel', cat:'trucker', emoji:'🔵', price:31.00, badge:null, desc:'5 panneaux, couture centrale, look skate.' },
+  ];
+
+  let cart = {};
+  let currentFilter = 'all';
+
+  function filterProducts(cat, el) {
+    currentFilter = cat;
+    document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+    el.classList.add('active');
+    renderProducts();
+  }
+
+  function renderProducts() {
+    const grid = document.getElementById('productsGrid');
+    const filtered = currentFilter === 'all' ? PRODUCTS : PRODUCTS.filter(p => p.cat === currentFilter);
+    grid.innerHTML = filtered.map(p => `
+      <div class="product-card" data-id="${p.id}">
+        <div class="product-img">
+          ${p.badge ? `<span class="badge badge-${p.badge}">${p.badge === 'new' ? 'NOUVEAU' : p.badge === 'hot' ? '🔥 TENDANCE' : 'ÉPUISÉ'}</span>` : ''}
+          <span>${p.emoji}</span>
+        </div>
+        <div class="product-info">
+          <p class="product-cat">${p.cat}</p>
+          <p class="product-name">${p.name}</p>
+          <p class="product-desc">${p.desc}</p>
+          <div class="product-footer">
+            <div class="product-price">
+              ${p.price.toFixed(2).replace('.',',')} €
+              ${p.old ? `<span class="old">${p.old.toFixed(2).replace('.',',')} €</span>` : ''}
+            </div>
+            <button class="add-btn" title="Ajouter au panier" onclick="addToCart(${p.id})">+</button>
+          </div>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  function addToCart(id) {
+    const p = PRODUCTS.find(x => x.id === id);
+    if (!p) return;
+    cart[id] = cart[id] ? { ...cart[id], qty: cart[id].qty + 1 } : { ...p, qty: 1 };
+    updateCartUI();
+    showToast(`${p.emoji} ${p.name} ajouté !`);
+  }
+
+  function removeFromCart(id) {
+    delete cart[id];
+    updateCartUI();
+  }
+
+  function changeQty(id, delta) {
+    if (!cart[id]) return;
+    cart[id].qty += delta;
+    if (cart[id].qty <= 0) delete cart[id];
+    updateCartUI();
+  }
+
+  function updateCartUI() {
+    const items = Object.values(cart);
+    const total = items.reduce((s, i) => s + i.price * i.qty, 0);
+    const count = items.reduce((s, i) => s + i.qty, 0);
+
+    document.getElementById('cartCount').textContent = count;
+    document.getElementById('cartTotal').textContent = total.toFixed(2).replace('.', ',') + ' €';
+    document.getElementById('checkoutBtn').disabled = count === 0;
+
+    const container = document.getElementById('cartItems');
+    if (items.length === 0) {
+      container.innerHTML = `<div class="cart-empty"><span>🧢</span><p>Panier vide</p></div>`;
+      return;
+    }
+    container.innerHTML = items.map(i => `
+      <div class="cart-item">
+        <div class="cart-item-img">${i.emoji}</div>
+        <div class="cart-item-info">
+          <p class="cart-item-name">${i.name}</p>
+          <p class="cart-item-price">${(i.price * i.qty).toFixed(2).replace('.', ',') } €</p>
+          <div class="qty-controls">
+            <button class="qty-btn" onclick="changeQty(${i.id}, -1)">−</button>
+            <span class="qty-num">${i.qty}</span>
+            <button class="qty-btn" onclick="changeQty(${i.id}, 1)">+</button>
+          </div>
+        </div>
+        <button class="remove-btn" onclick="removeFromCart(${i.id})">✕ Retirer</button>
+      </div>
+    `).join('');
+  }
+
+  function openCart() {
+    document.getElementById('cartDrawer').classList.add('open');
+    document.getElementById('overlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeCart() {
+    document.getElementById('cartDrawer').classList.remove('open');
+    document.getElementById('overlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function checkout() {
+    showToast('🎉 Commande en cours... (démo)');
+    closeCart();
+    setTimeout(() => { cart = {}; updateCartUI(); }, 1800);
+  }
+
+  let toastTimer;
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => t.classList.remove('show'), 2200);
+  }
+
+  // Init
+  renderProducts();
+</script>
+
+</body>
+</html>
